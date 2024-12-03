@@ -24,9 +24,9 @@ public class Abc extends Robot
 		while(true) {
 			// Replace the next 4 lines with any behavior you would like
 			ahead(100);
-			turnGunRight(360);
+			turnGunRight(270);
 			back(100);
-			turnGunRight(360);
+			turnGunRight(270);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class Abc extends Robot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
 		// Replace the next line with any behavior you would like
-		fire(1);
+		fire(2);
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class Abc extends Robot
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
 		// Replace the next line with any behavior you would like
-		back(10);
+		back(100);
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class Abc extends Robot
 	 */
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
-		back(20);
+		back(100);
 		// abcbada
 	}	
 }
