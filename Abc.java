@@ -1,15 +1,32 @@
-package pacote;
-import robocode.*;
+package sample;
 
+import robocode.*;
+import java.awt.*;
+
+/**
+ * SuperTracker - a Super Sample Robot by CrazyBassoonist based on the robot Tracker by Mathew Nelson and maintained by Flemming N. Larsen
+ * <p/>
+ * Locks onto a robot, moves close, fires when close.
+ */
+public class SuperTracker extends AdvancedRobot {
+    int moveDirection=1;//which way to move
+    /**
+     * run:  Tracker's main run function
+     */
     public void run() {
-        setColors(Color.darkGray,Color.black,Color.lightGray,Color.white,Color.green);
-        while (true) {
-            ahead(100);
-            turnRight(90);
-            
-        }
+        setAdjustRadarForRobotTurn(true);//keep the radar still while we turn
+        setBodyColor(new Color(128, 128, 50));
+        setGunColor(new Color(50, 50, 20));
+        setRadarColor(new Color(200, 200, 70));
+        setScanColor(Color.white);
+        setBulletColor(Color.blue);
+        setAdjustGunForRobotTurn(true); // Keep the gun still when we turn
+        turnRadarRightRadians(Double.POSITIVE_INFINITY);//keep turning radar right
     }
-    
+
+    /**
+     * onScannedRobot:  Here's the good stuff
+     */
     public void onScannedRobot(ScannedRobotEvent e) {
         double absBearing=e.getBearingRadians()+getHeadingRadians();//enemies absolute bearing
         double latVel=e.getVelocity() * Math.sin(e.getHeadingRadians() -absBearing);//enemies later velocity
@@ -33,8 +50,16 @@ import robocode.*;
             setFire(3);//fire
         }
     }
-    
-    public void onHitWall(HitWallEvent e) {
-        back 50;
-        turnRight(90);
+    public void onHitWall(HitWallEvent e){
+        moveDirection=-moveDirection;//reverse direction upon hitting a wall
     }
+    /**
+     * onWin:  Do a victory dance
+     */
+    public void onWin(WinEvent e) {
+        for (int i = 0; i < 50; i++) {
+            turnRight(30);
+            turnLeft(30);
+        }
+    }
+}
