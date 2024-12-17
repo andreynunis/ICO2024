@@ -65,7 +65,4 @@ public class AimLock extends AdvancedRobot {
     public void onHitWall(HitWallEvent e) {
         moveDirection = -moveDirection; // Inverte a direção ao bater em uma parede
     }
-
-        }
-    }
 }
